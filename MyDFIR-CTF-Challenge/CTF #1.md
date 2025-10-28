@@ -144,7 +144,7 @@ Sensitive financial and PII data were exfiltrated via `file.io`, making this a *
 
 
 
-### Successful RDP Session
+### KQL Queries
 ```kql
 SecurityEvent
 | where TimeGenerated between (datetime(2025-10-07 03:00:00) .. datetime(2025-10-07 11:00:00))

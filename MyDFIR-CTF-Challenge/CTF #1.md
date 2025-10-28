@@ -98,22 +98,26 @@ Sensitive financial and PII data were exfiltrated via `file.io`, making this a *
 
 ---
 
-## 🕓 Timeline (UTC)
+## 🧾 Indicators of Compromise (Sanitized)
 
-| Time | Host | Event |
-|:--|:--|:--|
-| 04:13:08 | MTS-REDACTED_PC | Administrator RDP login from REDACTED_IP_ATTACKER_1 (UK) |
-| 04:17:09 | MTS-REDACTED_PC | `cmd.exe` deleted OneDriveSetup executables |
-| 04:19:01 | MTS-REDACTED_PC | `netsh.exe advfirewall set allprofiles state off` |
-| 04:20–07:02 | MTS-REDACTED_PC | PowerShell (PID 4768) executed recon & persistence mods |
-| 06:07:19 | MTS-REDACTED_PC | `systeminfo.exe` executed |
-| 06:27:28 | MTS-REDACTED_PC | `mimikatz.exe` executed |
-| 07:02:25 | REDACTED_DC | RDP connection from REDACTED_PC |
-| 07:04–08:05 | REDACTED_DC | PowerShell (PID 9188) discovery & AD snapshot |
-| 08:05:46 | REDACTED_DC | `ntdsutil ifm create full c:\temp` |
-| 08:10:59 | REDACTED_DC | `backup.zip` created |
-| 08:11–08:20 | REDACTED_DC | Upload to `www.file.io` |
-| 08:16:05 | REDACTED_DC | Event logs cleared, PowerShell history deleted |
+| **Category** | **Indicator** | **Notes** |
+|:--------------|:--------------|:-----------|
+| IP Address | `REDACTED_IP_ATTACKER_1` | Attacker RDP source (original IP redacted) |
+| IP Address | `REDACTED_IP_C2_1:1337` | C2 host serving kb5029244.ps1 (redacted) |
+| IP Address | `REDACTED_EXTERNAL_IP_1` | Exfiltration endpoint (file.io) - redacted |
+| Domain | `REDACTED_EXFIL_DOMAIN` | Data exfiltration service (original domain redacted) |
+| File Path | `[REDACTED]\MicrosoftEdgeUpdate.exe` | Persistence binary (path sanitized) |
+| File Path | `[REDACTED]\TMP121235\mimikatz.exe` | Credential dumper (path sanitized) |
+| File Path | `[REDACTED]\Crypto\RSA\backup.zip` | Data archive created before exfiltration (sanitized) |
+| Hash (SHA256) | `42de05f181c5d9ab2db7c74514118155838187372a56e6afb6d67a0c53e64670` | Hash associated with a dropped binary (non-PII) |
+| Hash (SHA256) | `2271a79f40f56f3134614757673d385f2996b542ddb76d67f636e03bd7c9f298` | Hash associated with a dropped binary (non-PII) |
+| Hash (SHA256) | `d3c2ac0b0456d1ef09764f264bb7c36297b873f55f0cf69508a0e3426b4eddaa` | Hash associated with a dropped binary (non-PII) |
+| Registry Key | `HKLM\Software\Microsoft\Windows Defender\DisableAntiSpyware = 1` | Defender tamper indicator (sanitized) |
+| Registry Key | `DisableAntiVirus, DisableBehaviorMonitoring, DisableIOAVProtection = 1` | Defender evasion registry flags (sanitized) |
+| Scheduled Task | `GoogleUpdateTaskMachineCore` | Persistence scheduled task (sanitized) |
+| Scheduled Task | `MicrosoftEdgeUpdateTaskMachineUA` | Persistence scheduled task (sanitized) |
+| User-Agent | `Microsoft-CryptoAPI/10.0` | PowerShell download user-agent seen in telemetry |
+
 
 ---
 

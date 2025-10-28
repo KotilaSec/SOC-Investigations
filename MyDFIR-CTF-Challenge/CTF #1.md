@@ -161,6 +161,8 @@ DeviceNetworkEvents
 | where RemoteUrl == "www.file.io"
 | project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl, LocalIP, InitiatingProcessId
 
+---
+
 ## 🧾 Indicators of Compromise (IOCs)
 
 | **Category** | **Indicator** | **Notes** |

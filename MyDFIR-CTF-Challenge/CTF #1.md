@@ -123,6 +123,27 @@ Sensitive financial and PII data were exfiltrated via `file.io`, making this a *
 
 ## 🧠 KQL Queries
 
+## 🧾 Indicators of Compromise (IOCs)
+
+| **Category** | **Indicator** | **Notes** |
+|:--------------|:--------------|:-----------|
+| **IP Address** | `REDACTED_IP_ATTACKER_1` | Attacker RDP source (UK) |
+| **IP Address** | `REDACTED_IP_C2_1:1337` | C2 host serving `kb5029244.ps1` |
+| **IP Address** | `REDACTED_EXTERNAL_IP_1`, `REDACTED_EXTERNAL_IP_2` | `file.io` exfiltration endpoints |
+| **Domain** | `www.file.io` | Data exfiltration service |
+| **File Path** | `C:\Users\Public\MicrosoftEdgeUpdate.exe` | Persistence binary |
+| **File Path** | `C:\Windows\Temp\TMP121235\mimikatz.exe` | Credential dumper |
+| **File Path** | `C:\ProgramData\Microsoft\Crypto\RSA\backup.zip` | Data archive created before exfiltration |
+| **Hash (SHA256)** | `42de05f181c5d9ab2db7c74514118155838187372a56e6afb6d67a0c53e64670` | `MicrosoftEdgeUpdate.exe` |
+| **Hash (SHA256)** | `2271a79f40f56f3134614757673d385f2996b542ddb76d67f636e03bd7c9f298` | `Quickbooks_sync.exe` |
+| **Hash (SHA256)** | `d3c2ac0b0456d1ef09764f264bb7c36297b873f55f0cf69508a0e3426b4eddaa` | `Svchost_update.exe` |
+| **Registry Key** | `HKLM\Software\Microsoft\Windows Defender\DisableAntiSpyware = 1` | Defender disabled |
+| **Registry Key** | `DisableAntiVirus`, `DisableBehaviorMonitoring`, `DisableIOAVProtection = 1` | Evasion of Defender protection |
+| **Scheduled Task** | `GoogleUpdateTaskMachineCore`, `MicrosoftEdgeUpdateTaskMachineUA` | Persistence mechanisms |
+| **User-Agent** | `Microsoft-CryptoAPI/10.0` | Used for malicious PowerShell download |
+
+
+
 ### Successful RDP Session
 ```kql
 SecurityEvent
@@ -162,28 +183,6 @@ DeviceNetworkEvents
 | project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl, LocalIP, InitiatingProcessId
 
 ---
-
-## 🧾 Indicators of Compromise (IOCs)
-
-| **Category** | **Indicator** | **Notes** |
-|:--------------|:--------------|:-----------|
-| **IP Address** | `REDACTED_IP_ATTACKER_1` | Attacker RDP source (UK) |
-| **IP Address** | `REDACTED_IP_C2_1:1337` | C2 host serving `kb5029244.ps1` |
-| **IP Address** | `REDACTED_EXTERNAL_IP_1`, `REDACTED_EXTERNAL_IP_2` | `file.io` exfiltration endpoints |
-| **Domain** | `www.file.io` | Data exfiltration service |
-| **File Path** | `C:\Users\Public\MicrosoftEdgeUpdate.exe` | Persistence binary |
-| **File Path** | `C:\Windows\Temp\TMP121235\mimikatz.exe` | Credential dumper |
-| **File Path** | `C:\ProgramData\Microsoft\Crypto\RSA\backup.zip` | Data archive created before exfiltration |
-| **Hash (SHA256)** | `42de05f181c5d9ab2db7c74514118155838187372a56e6afb6d67a0c53e64670` | `MicrosoftEdgeUpdate.exe` |
-| **Hash (SHA256)** | `2271a79f40f56f3134614757673d385f2996b542ddb76d67f636e03bd7c9f298` | `Quickbooks_sync.exe` |
-| **Hash (SHA256)** | `d3c2ac0b0456d1ef09764f264bb7c36297b873f55f0cf69508a0e3426b4eddaa` | `Svchost_update.exe` |
-| **Registry Key** | `HKLM\Software\Microsoft\Windows Defender\DisableAntiSpyware = 1` | Defender disabled |
-| **Registry Key** | `DisableAntiVirus`, `DisableBehaviorMonitoring`, `DisableIOAVProtection = 1` | Evasion of Defender protection |
-| **Scheduled Task** | `GoogleUpdateTaskMachineCore`, `MicrosoftEdgeUpdateTaskMachineUA` | Persistence mechanisms |
-| **User-Agent** | `Microsoft-CryptoAPI/10.0` | Used for malicious PowerShell download |
-
-
-
 
 🔒 Disclosure & Privacy
 

@@ -156,13 +156,13 @@ SecurityEvent
 
 DeviceLogonEvents
 | where TimeGenerated between (datetime(2025-10-07 03:00:00) .. datetime(2025-10-07 11:00:00))
-| where DeviceName == "REDACTED_DC.mts.local"
+| where DeviceName == "REDACTED_DC.REDACTED.local"
 | where AccountName contains "administrator"
 | project TimeGenerated, DeviceName, ActionType, LogonType, AccountName, RemoteDeviceName, RemoteIP
 
 DeviceEvents
 | where TimeGenerated between (datetime(2025-10-07 03:00:00) .. datetime(2025-10-07 11:00:00))
-| where DeviceName == "REDACTED_DC.mts.local"
+| where DeviceName == "REDACTED_DC.REDACTED.local"
 | where AccountName contains "administrator"
 | summarize arg_max(TimeGenerated, FolderPath, SHA1, SHA256, MD5) by FileName
 | top 5 by FileName
@@ -178,7 +178,7 @@ union DeviceFileEvents, DeviceProcessEvents, DeviceEvents
 
 DeviceNetworkEvents
 | where TimeGenerated between (datetime(2025-10-07 04:00:00)..datetime(2025-10-07 11:30:00))
-| where DeviceName == "REDACTED_DC.mts.local"
+| where DeviceName == "REDACTED_DC.REDACTED.local"
 | where RemoteUrl == "www.file.io"
 | project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl, LocalIP, InitiatingProcessId
 
